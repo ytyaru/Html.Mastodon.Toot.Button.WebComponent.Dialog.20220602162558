@@ -1,0 +1,29 @@
+#toot-dialog {
+    top: 10%;
+    left: 10%;
+    padding: 0;
+    margin: 0;
+}
+#toot-dialog > form {
+    padding: 0;
+    margin: 0;
+}
+#toot-dialog textarea {
+    width: 200px;
+    height: 200px;
+}
+#toot-dialog a:focus img {
+    border: thick double #32a1ce;
+}
+#toot-button {
+    width: auto;
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: 0;
+    font-size: 0;
+    line-height: 0;
+    overflow: visible;
+    cursor: pointer;
+}
+
