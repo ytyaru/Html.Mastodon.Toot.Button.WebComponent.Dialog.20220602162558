@@ -18,7 +18,8 @@ class TootButton extends HTMLElement {
         const button = await this.#make()
         console.debug(button.innerHTML)
         //shadow.innerHTML = `<style>${this.#cssBase()}${this.#cssAnimation()}</style>${button.innerHTML}` 
-        shadow.innerHTML = `<style>${this.#cssBase()}${this.#cssButton()}${this.#cssAnimation()}</style>${button.outerHTML}` 
+        
+        shadow.innerHTML = `<style>${this.#cssBase()}${this.#cssButton()}${this.#cssAnimation()}${this.#cssFocsAnimation()}</style>${button.outerHTML}` 
         // pointer系 = mouse系 + touch系 + pen系
         this.shadowRoot.querySelector('img').addEventListener('pointerdown', (e)=>{ e.target.classList.add('jump'); }, false);
         //this.shadowRoot.querySelector('img').addEventListener('pointerover', (e)=>{ e.target.classList.add('flip'); }, false);
@@ -77,6 +78,28 @@ button {
   transform-origin: 50% 50%;
   animation: flip .20s linear alternate;
 }`; }
+    #cssFocsAnimation() { return `
+button {
+  width: ${this.imgSize}px;
+  height: ${this.imgSize}px;
+}
+button:focus {
+  transform-origin: 50% 50%;
+  animation: flip .20s linear alternate;
+}
+button, button img {
+  width: ${this.imgSize}px;
+  height: ${this.imgSize}px;
+  z-index: 1;
+}
+button:focus, button:focus img {
+  width: ${this.imgSize * 1.5}px;
+  height: ${this.imgSize * 1.5}px;
+  z-index: 9999;
+  vertical-align:bottom;
+}
+`
+    }
     attributeChangedCallback(property, oldValue, newValue) {
         if (oldValue === newValue) { return; }
         if ('img-src' === property) { this.imgSrc = newValue}
