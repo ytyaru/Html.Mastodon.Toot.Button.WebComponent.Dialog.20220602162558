@@ -84,7 +84,8 @@ class Tooter {
     }
     async toot(accessToken) {
         console.debug('----- toot -----')
-        const status = document.getElementById('status').value
+        const statusEl = document.getElementById('status')
+        const status = (statusEl.hasAttribute('contenteditable')) ? statusEl.innerText : statusEl.value
         console.debug('status:', status)
         const headers = { 'Authorization': `Bearer ${accessToken}` }
         const params = {status: status, visibility:'public'};

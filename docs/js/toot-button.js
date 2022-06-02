@@ -225,7 +225,8 @@ button:focus, button:focus img {
                 console.debug(sessionStorage.getItem(`${domain}-client_secret`))
                 sessionStorage.setItem(`${domain}-client_id`, app.client_id);
                 sessionStorage.setItem(`${domain}-client_secret`, app.client_secret);
-                sessionStorage.setItem(`status`, document.getElementById('status').value);
+                const status = document.getElementById('status')
+                sessionStorage.setItem(`status`, (status.hasAttribute('contenteditable')) ? status.innerText : status.value);
                 tooter.authorize(app.client_id)
             }
         });
